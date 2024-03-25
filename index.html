@@ -1,147 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Chang Gao - PhD Student</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #f2f2f2;
-      padding: 20px;
-      text-align: center;
-    }
-    nav {
-      background-color: #333;
-      padding: 10px;
-      text-align: center;
-    }
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-    nav ul li {
-      display: inline;
-      margin-right: 10px;
-    }
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-    }
-    section {
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    footer {
-      background-color: #333;
-      color: #fff;
-      padding: 10px 20px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      text-align: center;
-    }
-    #about {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    #about img {
-      width: 200px;
-      height: auto;
-      margin-top: 20px;
-      border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-    #personal, #cv {
-      display: none;
-    }
-    @media (max-width: 768px) {
-      #about {
-        flex-direction: column;
-      }
-      #about img {
-        margin-left: 0;
-        margin-top: 10px;
-      }
-    }
-    .image-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 10px;
-      justify-items: center;
-      align-items: center;
-    }
-    .image-gallery img {
-      max-width: 100%;
-      height: auto;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-  </style>
+    <title>Chang Gao - PhD Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f2f2f2;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        section {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+        #about {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        #about img {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        #personal, #cv {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            #about {
+                flex-direction: column;
+            }
+            #about img {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            justify-items: center;
+            align-items: center;
+        }
+        .image-gallery img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Chang Gao</h1>
-  </header>
+    <header>
+        <h1>Chang Gao</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="javascript:void(0)" onclick="showSection('about')">About</a></li>
+            <li><a href="javascript:void(0)" onclick="showSection('cv')">Vitae</a></li>
+            <li><a href="javascript:void(0)" onclick="showSection('personal')">Travel</a></li>
+        </ul>
+    </nav>
 
-  <nav>
-    <ul>
-      <li><a href="javascript:void(0)" onclick="showSection('about')">About</a></li>
-      <li><a href="javascript:void(0)" onclick="showSection('cv')">Vitae</a></li>
-      <li><a href="javascript:void(0)" onclick="showSection('personal')">Travel</a></li>
-    </ul>
-  </nav>
+    <!-- About Me -->
+    <section id="about">
+        <div>
+            <h2>About Me</h2>
+            <p>Chang is a 2nd year PhD student at the Department of Economics, University of Oklahoma. My interest lies in the macroeconomic issues related to housing price, aging and pension.</p>
+        </div>
+        <!-- Insert your photo here -->
+        <img src="IMG_5760.jpg" alt="Chang Gao">
+    </section>
 
-  <!-- About Me -->
-  <section id="about">
-    <div>
-      <h2>About Me</h2>
-      <p>Chang is a 2nd year PhD student at the Department of Economics, University of Oklahoma. My interest lies in the macroeconomic issues related to housing price, aging and pension.</p>
-    </div>
-    <!-- Insert your photo here -->
-    <img src="IMG_5760.jpg" alt="Chang Gao">
-  </section>
+    <!-- Curriculum Vitae -->
+    <section id="cv">
+        <h2>CV</h2>
+        <!-- Link to your CV file -->
+        <p>Download Chang's <a href="https://drive.google.com/file/d/1qo8c1qEIPuigxYvP-prudGyN5NOxE29n/view?usp=sharing" target="_blank">CV</a>.</p>
+    </section>
 
-  <!-- Curriculum Vitae -->
-  <section id="cv">
-    <h2>CV</h2>
-    <!-- Link to your CV file -->
-    <p>Download Chang's <a href="https://drive.google.com/file/d/1qo8c1qEIPuigxYvP-prudGyN5NOxE29n/view?usp=sharing" target="_blank">CV</a>.</p>
-  </section>
+    <!-- Personal -->
+    <section id="personal">
+        <h2>Trips</h2>
+        <p>I enjoy travel around the world, here is my recent trip to Hokkaido, Japan.</p>
+        <div class="image-gallery">
+            <img src="6372.jpg" alt="Image 1">
+            <img src="6332.jpg" alt="Image 2">
+            <img src="6377.jpg" alt="Image 3">
+            <img src="6452.jpg" alt="Image 4">
+            <img src="6801.jpg" alt="Image 5">
+        </div>
+    </section>
 
-  <!-- Personal -->
-  <section id="personal">
-    <h2>Trips</h2>
-    <p>I enjoy travel around the world, here is my recent trip to Hokkaido, Japan.</p>
-    <div class="image-gallery">
-      <img src="6372.jpg" alt="Image 1">
-      <img src="6332.jpg" alt="Image 2">
-      <img src="6377.jpg" alt="Image 3">
-      <img src="6452.jpg" alt="Image 4">
-      <img src="6801.jpg" alt="Image 5">
-    </div>
-  </section>
+    <footer>
+        <p>&copy; 2024 Chang Gao. All rights reserved.</p>
+    </footer>
 
-  <footer>
-    <p>&copy; 2024 Chang Gao. All rights reserved.</p>
-  </footer>
+    <script>
+        function showSection(sectionId) {
+            var sections = document.querySelectorAll('section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = 'none';
+            }
+            document.getElementById(sectionId).style.display = 'block';
+        }
 
-  <script>
-    function showSection(sectionId) {
-      var sections = document.querySelectorAll('section');
-      for (var i = 0; i < sections.length; i++) {
-        sections[i].style.display = 'none';
-      }
-      document.getElementById(sectionId).style.display = 'block';
-    }
-
-    // 默认显示 "About Me" 部分
-    showSection('about');
-  </script>
+        // 默认显示 "About Me" 部分
+        showSection('about');
+    </script>
 </body>
 </html>
