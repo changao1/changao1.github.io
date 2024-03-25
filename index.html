@@ -1,66 +1,11 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Chang Gao - PhD Student</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #f2f2f2;
-            padding: 20px;
-            text-align: center;
-        }
-
-        section {
-            padding: 20px;
-            margin-bottom: 20px;
-            display: none; /* 初始时隐藏所有部分 */
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            text-align: center;
-        }
-
-        #about {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        #about img {
-            width: 150px;
-            margin-left: 20px;
-        }
-
-        @media (max-width: 768px) {
-            #about {
-                flex-direction: column;
-            }
-
-            #about img {
-                margin-left: 0;
-                margin-top: 10px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <header>
-        <h1>Chang Gao</h1>
-    </header>
-
+<!DOCTYPE html> <html> <head> <title>Chang Gao - PhD Student</title> <style> body { font-family: Arial, sans-serif; margin: 0; padding: 0; } header { background-color: #f2f2f2; padding: 20px; text-align: center; } nav { background-color: #333; padding: 10px; text-align: center; } nav ul { list-style-type: none; margin: 0; padding: 0; } nav ul li { display: inline; margin-right: 10px; } nav ul li a { color: #fff; text-decoration: none; } section { padding: 20px; margin-bottom: 20px; } footer { background-color: #333; color: #fff; padding: 10px 20px; position: fixed; bottom: 0; width: 100%; text-align: center; } #about { display: flex; flex-direction: row; align-items: center; } #about img { width: 150px; margin-left: 20px; } #personal, #cv { display: none; } @media (max-width: 768px) { #about { flex-direction: column; } #about img { margin-left: 0; margin-top: 10px; } } </style> </head> <body> <header> <h1>Chang Gao</h1> </header>
+    <nav>
+    <ul>
+        <li><a href="javascript:void(0)" onclick="showSection('about')">About Me</a></li>
+        <li><a href="javascript:void(0)" onclick="showSection('personal')">Personal</a></li>
+        <li><a href="javascript:void(0)" onclick="showSection('cv')">Curriculum Vitae</a></li>
+    </ul>
+</nav>
 
 <!-- About Me -->
 <section id="about">
@@ -75,7 +20,7 @@
 <!-- Personal -->
 <section id="personal">
     <h2>Personal</h2>
-    <p>I enjoy travel around the world, here is my recent trip to Hokkaido, Japan. <a href="javascript:void(0)" onclick="showSection('personal')">Click here</a>.</p>
+    <p>I enjoy travel around the world, here is my recent trip to Hokkaido, Japan.</p>
     <div class="image-gallery">
         <img src="6372.jpg" alt="Image 1">
         <img src="6332.jpg" alt="Image 2">
@@ -104,9 +49,8 @@
             sections[i].style.display = 'none';
         }
         document.getElementById(sectionId).style.display = 'block';
-        document.getElementById('about').style.display = 'flex';
     }
+    // 默认显示 "About Me" 部分
+    showSection('about');
 </script>
-</body>
-
-</html>
+</body> </html>
