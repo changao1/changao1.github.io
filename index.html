@@ -61,57 +61,52 @@
         <h1>Chang Gao</h1>
     </header>
 
-    <!-- About Me -->
-    <div id="aboutSection">
-        <section id="about">
-            <div>
-                <h2>About Me</h2>
-                <p>Chang is a 2nd year PhD student at the Department of Economics, University of Oklahoma. My interest lies in the macroeconomic issues related to housing price, aging and pension.</p>
-            </div>
-            <!-- Insert your photo here -->
-            <img src="IMG_5760.jpg" alt="Chang Gao">
-        </section>
+
+<!-- About Me -->
+<section id="about">
+    <div>
+        <h2>About Me</h2>
+        <p>Chang is a 2nd year PhD student at the Department of Economics, University of Oklahoma. My interest lies in the macroeconomic issues related to housing price, aging and pension.</p>
     </div>
+    <!-- Insert your photo here -->
+    <img src="IMG_5760.jpg" alt="Chang Gao">
+</section>
 
-    <!-- Personal -->
-    <div id="personalSection">
-    <section id="personal">
-        <h2>Personal</h2>
-        <p>I enjoy travel around the world, here is my recent trip to Hokkaido, Japan. <a href="#" onclick="showSection('personal')">Click here</a>.</p>
-        <div class="image-gallery">
-            <img src="6372.jpg" alt="Image 1">
-            <img src="6332.jpg" alt="Image 2">
-            <img src="6377.jpg" alt="Image 3">
-            <img src="6452.jpg" alt="Image 2">
-            <img src="6801.jpg" alt="Image 3">
-            <!-- 继续添加其他图片 -->
-        </div>
-    </section>
+<!-- Personal -->
+<section id="personal">
+    <h2>Personal</h2>
+    <p>I enjoy travel around the world, here is my recent trip to Hokkaido, Japan. <a href="javascript:void(0)" onclick="showSection('personal')">Click here</a>.</p>
+    <div class="image-gallery">
+        <img src="6372.jpg" alt="Image 1">
+        <img src="6332.jpg" alt="Image 2">
+        <img src="6377.jpg" alt="Image 3">
+        <img src="6452.jpg" alt="Image 2">
+        <img src="6801.jpg" alt="Image 3">
+        <!-- 继续添加其他图片 -->
     </div>
+</section>
 
+<!-- Curriculum Vitae -->
+<section id="cv">
+    <h2>Curriculum Vitae</h2>
+    <!-- Link to your CV file -->
+    <p>Download Chang's <a href="path/to/your/cv.pdf" download>CV</a>.</p>
+</section>
 
-    <!-- Curriculum Vitae -->
-    <div id="cvSection">
-        <section id="cv">
-            <h2>Curriculum Vitae</h2>
-            <!-- Link to your CV file -->
-            <p>Download Chang's <a href="https://drive.google.com/file/d/1qo8c1qEIPuigxYvP-prudGyN5NOxE29n/view?usp=sharing" download>CV</a>.</p>
-        </section>
-    </div>
+<footer>
+    <p>&copy; 2024 Chang Gao. All rights reserved.</p>
+</footer>
 
-    <footer>
-        <p>&copy; 2024 Chang Gao. All rights reserved.</p>
-    </footer>
-
-    <script>
-        function showSection(sectionId) {
-            var sections = document.querySelectorAll('section');
-            for (var i = 0; i < sections.length; i++) {
-                sections[i].style.display = 'none'; // 隐藏所有部分
-            }
-            document.getElementById(sectionId).style.display = 'block'; // 显示指定部分
+<script>
+    function showSection(sectionId) {
+        var sections = document.querySelectorAll('section');
+        for (var i = 0; i < sections.length; i++) {
+            sections[i].style.display = 'none';
         }
-    </script>
+        document.getElementById(sectionId).style.display = 'block';
+        document.getElementById('about').style.display = 'flex';
+    }
+</script>
 </body>
 
 </html>
