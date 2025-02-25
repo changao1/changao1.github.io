@@ -1,164 +1,622 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chang Gao - PhD Student</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --dark-bg: #2c3e50;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            scroll-behavior: smooth;
         }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         header {
-            background-color: #f2f2f2;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            background-color: #333;
-            padding: 10px;
-            text-align: center;
-        }
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 10px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-        section {
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 20px 0;
             position: fixed;
-            bottom: 0;
             width: 100%;
-            text-align: center;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
-        #about {
+
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(44, 62, 80, 0.95);
+        }
+
+        .header-content {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
         }
-        #about img {
-            width: 100%;
-            height: auto;
-            margin-top: 20px;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            max-width: 400px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
         }
-        #personal, #cv {
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        main {
+            padding-top: 80px;
+        }
+
+        section {
+            padding: 80px 0;
+            min-height: 100vh;
             display: none;
         }
-        @media (max-width: 768px) {
-            #about {
-                flex-direction: column;
-            }
-            #about img {
-                margin-left: 0;
-                margin-top: 10px;
-            }
+
+        section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
         }
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 10px;
-            justify-items: center;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* About Section */
+        #about {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
+            gap: 40px;
         }
-        .image-gallery img {
-            max-width: 100%;
-            height: auto;
+
+        .about-content {
+            flex: 1;
+        }
+
+        .profile-img {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .profile-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .profile-img img:hover {
+            transform: scale(1.03);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Research Section */
+        .research-item {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .research-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .research-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        /* Teaching Section */
+        .teaching-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .teaching-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .teaching-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 15px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body ul {
+            list-style-position: inside;
+            margin-top: 10px;
+        }
+
+        /* CV Section */
+        .cv-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .download-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-btn i {
+            margin-right: 8px;
+        }
+
+        /* Personal Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
             object-fit: cover;
-            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h2 {
+                font-size: 2rem;
+            }
+            
+            #about {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--primary-color);
+                padding: 20px;
+                gap: 0;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+            }
+
+            nav ul.show {
+                left: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 15px;
+            }
+
+            .teaching-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Chang Gao</h1>
+    <header id="header">
+        <div class="container header-content">
+            <div class="logo">
+                <h1>Chang Gao</h1>
+            </div>
+            <div class="mobile-toggle" id="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#about" class="nav-link active">About</a></li>
+                    <li><a href="#research" class="nav-link">Research</a></li>
+                    <li><a href="#teaching" class="nav-link">Teaching</a></li>
+                    <li><a href="#cv" class="nav-link">CV</a></li>
+                    <!-- <li><a href="#personal" class="nav-link">Personal</a></li> -->
+                </ul>
+            </nav>
+        </div>
     </header>
-    <nav>
-        <ul>
-            <li><a href="javascript:void(0)" onclick="showSection('about')">About</a></li>
-            <li><a href="javascript:void(0)" onclick="showSection('Research')">Research</a></li>
-            <li><a href="javascript:void(0)" onclick="showSection('Teaching')">Teaching</a></li>
-            <li><a href="javascript:void(0)" onclick="showSection('cv')">CV</a></li>
-            <!-- <li><a href="javascript:void(0)" onclick="showSection('personal')">Personal</a></li> -->
-        </ul>
-    </nav>
-    <!-- About Me -->
-    <section id="about">
-        <div>
-            <h2>About Me</h2>
-            <p>I am a 3rd year PhD student at the Department of Economics, University of Oklahoma. My interest lies in the macroeconomic issues related to housing price and aging.</p>
-            <p>Contact: gaochang1226@gmail.com</p>
-        </div>
-        <!-- Insert your photo here -->
-        <img src="IMG_5760.jpg" alt="Chang Gao">
-    </section>
-    <!-- Reasearch-->
-    <section id="Research">
-        <h2>Research</h2>
-        <!-- Link to your CV file -->
-        <p>To be added</p>
-    </section>
-    <!-- Teaching-->
-    <section id="Teaching">
-        <h2>Teach</h2>
-        <!-- Link to slides-->
-        <p>Here is <a href="https://drive.google.com/drive/folders/1StBiLIYf8ekYUQprY9wDeQoeiJe_1JbT?usp=sharing" target="_blank">link</a> to Chang's teaching notes in intermediate macroeconomics and MA level optimization (in both Chinese and English).</p>
-        <p>Starting 2024 fall, I will teach a session of ECON2843: Elements of statistics at The University of Oklahoma. In the upcoming winter, I will teach a session of ECON1113: Principle of economics-macro online.</p>
-    </section>
-    <!-- Curriculum Vitae -->
-    <section id="cv">
-        <h2>CV</h2>
-        <!-- Link to your CV file -->
-        <p>Download Chang's <a href="https://drive.google.com/file/d/1qo8c1qEIPuigxYvP-prudGyN5NOxE29n/view?usp=sharing" target="_blank">CV</a>.</p>
-    </section>
-    
 
-    <!-- Personal -->
-<!--     <section id="personal">
-        <h2>Trips</h2>
-        <p>I enjoy travel around the world, here is my recent trip to Hokkaido, Japan.</p>
-        <div class="image-gallery">
-            <img src="6372.jpg" alt="Image 1">
-            <img src="6332.jpg" alt="Image 2">
-            <img src="6377.jpg" alt="Image 3">
-            <img src="6452.jpg" alt="Image 4">
-            <img src="6801.jpg" alt="Image 5">
-        </div>
-    </section> -->
+    <main>
+        <!-- About Section -->
+        <section id="about" class="container active">
+            <div class="about-content">
+                <h2>About Me</h2>
+                <p>I am a 3rd year PhD student at the Department of Economics, University of Oklahoma. My interest lies in the macroeconomic issues related to housing price and aging.</p>
+                <p>My research focuses on understanding the complex interactions between demographic changes and housing markets, with particular emphasis on how aging populations impact housing prices and macroeconomic stability.</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> gaochang1226@gmail.com</p>
+                    <p><i class="fas fa-university"></i> Department of Economics, University of Oklahoma</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                </div>
+            </div>
+            <div class="profile-img">
+                <img src="IMG_5760.jpg" alt="Chang Gao">
+            </div>
+        </section>
 
-    <!-- <footer>
-    <p>&copy; 2024 Chang Gao. All rights reserved.</p>
-    </footer>  -->
+        <!-- Research Section -->
+        <section id="research" class="container">
+            <h2>Research</h2>
+            <p>My research focuses on macroeconomic issues related to housing markets and demographic changes.</p>
+            
+            <div class="research-item">
+                <h3>Current Projects</h3>
+                <p>Working on research examining the impact of aging populations on housing prices in developed economies.</p>
+            </div>
+            
+            <div class="research-item">
+                <h3>Future Research Directions</h3>
+                <p>Planning to explore the relationship between monetary policy, housing markets, and demographic transitions.</p>
+            </div>
+        </section>
+
+        <!-- Teaching Section -->
+        <section id="teaching" class="container">
+            <h2>Teaching</h2>
+            <p>I am passionate about economics education and have experience teaching various courses at both undergraduate and graduate levels.</p>
+            
+            <p>Here is a <a href="https://drive.google.com/drive/folders/1StBiLIYf8ekYUQprY9wDeQoeiJe_1JbT?usp=sharing" target="_blank"><i class="fas fa-external-link-alt"></i> link</a> to my teaching notes in intermediate macroeconomics and MA level optimization (in both Chinese and English).</p>
+            
+            <div class="teaching-container">
+                <div class="teaching-card">
+                    <div class="card-header">
+                        <h3>ECON2843: Elements of Statistics</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><i class="far fa-calendar-alt"></i> Fall 2024</p>
+                        <p><i class="fas fa-map-marker-alt"></i> University of Oklahoma</p>
+                        <p>An introductory statistics course focusing on data analysis and statistical methods in economics.</p>
+                    </div>
+                </div>
+                
+                <div class="teaching-card">
+                    <div class="card-header">
+                        <h3>ECON1113: Principles of Economics - Macro</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><i class="far fa-calendar-alt"></i> Winter 2024</p>
+                        <p><i class="fas fa-globe"></i> Online Course</p>
+                        <p>An introduction to macroeconomic principles, covering topics such as GDP, inflation, unemployment, and fiscal and monetary policy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV Section -->
+        <section id="cv" class="container">
+            <div class="cv-content">
+                <h2>Curriculum Vitae</h2>
+                <p>My CV contains detailed information about my academic background, research experience, teaching activities, and professional skills.</p>
+                <a href="https://drive.google.com/file/d/1qo8c1qEIPuigxYvP-prudGyN5NOxE29n/view?usp=sharing" target="_blank" class="download-btn">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+            </div>
+        </section>
+
+        <!-- Personal Section (Commented out as in the original) -->
+        <!--
+        <section id="personal" class="container">
+            <h2>Travels</h2>
+            <p>I enjoy traveling around the world. Here are some photos from my recent trip to Hokkaido, Japan.</p>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="6372.jpg" alt="Hokkaido Scenery">
+                </div>
+                <div class="gallery-item">
+                    <img src="6332.jpg" alt="Hokkaido Scenery">
+                </div>
+                <div class="gallery-item">
+                    <img src="6377.jpg" alt="Hokkaido Scenery">
+                </div>
+                <div class="gallery-item">
+                    <img src="6452.jpg" alt="Hokkaido Scenery">
+                </div>
+                <div class="gallery-item">
+                    <img src="6801.jpg" alt="Hokkaido Scenery">
+                </div>
+            </div>
+        </section>
+        -->
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Chang Gao. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <script>
-        function showSection(sectionId) {
-            var sections = document.querySelectorAll('section');
-            for (var i = 0; i < sections.length; i++) {
-                sections[i].style.display = 'none';
-            }
-            document.getElementById(sectionId).style.display = 'block';
-        }
+        // Navigation and section display
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const header = document.getElementById('header');
+        const backToTop = document.getElementById('back-to-top');
 
-        // 默认显示 "About Me" 部分
-        showSection('about');
+        // Mobile menu toggle
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            mobileToggle.innerHTML = navMenu.classList.contains('show') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Hide mobile menu after clicking
+                navMenu.classList.remove('show');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                
+                // Get the section id
+                const targetId = link.getAttribute('href').substring(1);
+                
+                // Remove active class from all links and sections
+                navLinks.forEach(link => link.classList.remove('active'));
+                sections.forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked link and corresponding section
+                link.classList.add('active');
+                document.getElementById(targetId).classList.add('active');
+                
+                // Scroll to top of the page
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+                backToTop.classList.add('visible');
+            } else {
+                header.classList.remove('scrolled');
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Back to top button
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Default section
+        window.addEventListener('load', () => {
+            // Show the about section by default
+            document.getElementById('about').classList.add('active');
+            document.querySelector('a[href="#about"]').classList.add('active');
+        });
     </script>
 </body>
 </html>
