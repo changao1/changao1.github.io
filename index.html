@@ -420,8 +420,8 @@
             <nav>
                 <ul id="nav-menu">
                     <li><a href="#about" class="nav-link active">About</a></li>
-                    <li><a href="#research" class="nav-link">Research</a></li>
-                    <li><a href="#teaching" class="nav-link">Teaching</a></li>
+                    <li><a href="#Research" class="nav-link">Research</a></li>
+                    <li><a href="#Teaching" class="nav-link">Teaching</a></li>
                     <li><a href="#cv" class="nav-link">CV</a></li>
                     <!-- <li><a href="#personal" class="nav-link">Personal</a></li> -->
                 </ul>
@@ -452,7 +452,7 @@
         </section>
 
         <!-- Research Section -->
-        <section id="research" class="container">
+        <section id="Research" class="container">
             <h2>Research</h2>
             <p>My research focuses on macroeconomic issues related to housing markets and demographic changes.</p>
             
@@ -468,7 +468,7 @@
         </section>
 
         <!-- Teaching Section -->
-        <section id="teaching" class="container">
+        <section id="Teaching" class="container">
             <h2>Teaching</h2>
             <p>I am passionate about economics education and have experience teaching various courses at both undergraduate and graduate levels.</p>
             
@@ -556,6 +556,28 @@
         const header = document.getElementById('header');
         const backToTop = document.getElementById('back-to-top');
 
+        // Function to show a specific section
+        function showSection(sectionId) {
+            // Hide all sections
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the target section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Update active navigation link
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + sectionId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
         // Mobile menu toggle
         mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('show');
@@ -576,13 +598,8 @@
                 // Get the section id
                 const targetId = link.getAttribute('href').substring(1);
                 
-                // Remove active class from all links and sections
-                navLinks.forEach(link => link.classList.remove('active'));
-                sections.forEach(section => section.classList.remove('active'));
-                
-                // Add active class to clicked link and corresponding section
-                link.classList.add('active');
-                document.getElementById(targetId).classList.add('active');
+                // Show the target section
+                showSection(targetId);
                 
                 // Scroll to top of the page
                 window.scrollTo({
@@ -611,11 +628,9 @@
             });
         });
 
-        // Default section
-        window.addEventListener('load', () => {
-            // Show the about section by default
-            document.getElementById('about').classList.add('active');
-            document.querySelector('a[href="#about"]').classList.add('active');
+        // Default section - show About section on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            showSection('about');
         });
     </script>
 </body>
