@@ -1,0 +1,88 @@
+% !TeX spellcheck = en_US
+\documentclass[12pt,letterpaper]{article}
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\pagestyle{fancy}
+\usepackage{xcolor}
+%\usepackage{mathpazo}
+%{\renewcommand{\headrulewidth}{0pt}
+%		\fancyhead[L]{}    
+%		\fancyhead[R]{\href{mailto:chang.gao@ou.edu}{chang.gao@ou.edu}}
+%	}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+%\newcommand{\E}{\mathbb{E}}
+
+\cfoot{\thepage}
+\begin{document}
+	\begin{center}
+		{\large Little notes on Dynamic Programming}\bigskip\\
+	\end{center}
+	The problem can be written as
+	\begin{equation}
+		v(k)=\max_x u(f(k)-x)+\beta v(x)
+	\end{equation}
+	Where $k$ is a variable and $x$ is a picked value depend on $k$ such that $v(k)$ is maximized.\smallskip\\
+	{\bf 1)}\ To solve the problem, firstly do the derivative on both side of (1)
+	\begin{equation}
+	v'(k)=u'(f(k)-x)f'(k)
+    \end{equation}
+	The derivative of $\beta v(x)$ is ruled out by the envelope theorem.\smallskip\\
+	To understand this step, recall what we will do in maximize a function about $k$, that is simply do the derivative.\\
+	Then set the policy function
+	\begin{equation}
+		x=g(k)
+	\end{equation}
+	{\color{red}as the characterized $x$ of (1).}
+	Then
+	\begin{equation}
+		v'(k)=u'(f(k)-g(k))f'(k)
+	\end{equation}
+	{\bf 2)}\ The second step is to do the derivative on the RHS of (1) with respect to $x$, that is to find the best $x$
+	\begin{equation}
+	-u'(f(k)-x)+\beta v'(x)=0
+	\end{equation}
+	Which yields
+	\begin{equation}
+		u'(f(k)-x)=\beta v'(x)
+	\end{equation}
+	The economics interpretation of this step is that given endowment $k$, the best $x$ that maximize the $v(k)$ is obtained through smoothing consumption.\\ Plug the policy function and get
+	\begin{equation}
+		u'(f(k)-g(k))=\beta v'(g(k))
+	\end{equation}
+	{\bf 3)}\ Iterate (4) forward to the next period by substituting $g(k)$ into $k$ in (4), get 
+	\begin{equation}
+		v'(g(k))=u'(f(g(k))-g(g(k)))f'(g(k))
+	\end{equation}
+	You may feel confused on why we need to substitute $g(k)$ into $k$, as $x=g(k)$. Mathematically this is to help get the RHS of (7), while analytically it is to help iterate toward a fixed point where $k=g(k)$.\smallskip\\
+	{\bf 4)}\ Combine (7) and (8) by replacing $v'(g(k))$, get the inter-temporal Euler equation on marginal utility.
+	\begin{equation}
+		u'(f(k)-g(k))=\beta u'(f(g(k))-g(g(k)))f'(g(k))
+	\end{equation}
+\newpage
+\noindent{\bf Q6 from OU Fall 2022 Second midterm} Prove Shephard’s lemma using the envelope theorem\smallskip\\
+{\it My solution}
+$$\min_x c=w\cdot x$$
+$$\text{s.t.}\ y=f(x)$$
+The Lagrangian $L(x,\lambda)=w\cdot x+\lambda\cdot(y-f(x))$,
+The FOC yields
+\begin{equation*}
+	\frac{\partial L}{\partial x}=w-\lambda\cdot f'(x)=0
+\end{equation*}
+\begin{equation*}
+	y-f(x)=0
+\end{equation*}
+Solve and get $\lambda^*=\lambda^*(w,y)$ and $x^*=x^*(w,y)$, where $w-\lambda^*\cdot f'(x^*)=0$ and $y-f(x^*)=0$.
+Then the Lagrangian can be rewritten as
+$$L(w,y)=w\cdot x^*(w,y)+\lambda^*(w,y)[y-f(x^*(w,y))]$$
+The FOC with respect to $w$ is
+\begin{equation*}
+	\begin{aligned}
+		\frac{\partial L}{\partial w}&=(w)'\cdot x^*(w,y)+w\cdot\frac{\partial x^*(w,y)}{\partial w}+\frac{\partial\lambda^*(w,y)}{\partial w}[y-y-f(x^*(w,y))]+\lambda^*(w,y)[-\frac{\partial f(x^*)}{\partial x}\cdot\frac{\partial x^*(w,y)}{\partial w}]\\&=x^*(w,y)+[w-\lambda^*(w,y)\frac{\partial f(x^*)}{\partial x}]\cdot\frac{\partial x^*(w,y)}{\partial w}+[y-f(x^*(w,y))]\frac{\partial\lambda^*(w,y)}{\partial w}
+	\end{aligned}
+\end{equation*}
+Since $w-\lambda^*\cdot f'(x)=0$ and $y-f(x^*)=0$ by the FOC of the first Lagrangian$$\frac{\partial L}{\partial w}=x^*(w,y)$$
+Therefore, $$\frac{\partial c(w,y)}{\partial w}=\frac{\partial L}{\partial w}=x^*(w,y).$$
+\end{document}

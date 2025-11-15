@@ -1,0 +1,72 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[left=1.1in,top=0.8in,right=1.1in,bottom=0.9in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{fancyhdr}
+%\usepackage{graphicx}
+%\usepackage{ctex}
+%\usepackage{braket}
+%\usepackage{mathpazo}
+%\usepackage{minted}
+%\usepackage{xcolor} % to access the named colour LightGray
+%\definecolor{LightGray}{gray}{0.9}
+\usepackage{setspace}
+\doublespacing
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+%\usepackage{graphicx}
+%\usepackage{background}
+\pagestyle{fancy}
+\fancyhf{}
+%\rhead{for development economics}
+%\rhead{Chang Gao}
+\cfoot{\thepage}
+\begin{document}
+\begin{center}
+{\bf Why Sample Variance has $n-1$ on denominator?}
+\end{center}
+Recall the population variance formula:
+$$\sigma^2=\frac{1}{N}\sum_{i=1}^N(X_i-\mu)^2$$
+Sample variance:
+\[s^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2\]
+Rewrite $\mathbb E[\sum_{i=1}^n (X_i - \bar{X})^2]$ as:
+\[\mathbb E[\sum_{i=1}^n (X_i - \mu + \mu - \bar{X})^2]\]
+Expand the squared term:
+\[\mathbb E[\sum_{i=1}^n ((X_i - \mu)^2 + 2(X_i - \mu)(\mu - \bar{X}) + (\mu - \bar{X})^2)]\]
+Simplify:
+\[\mathbb E[\sum_{i=1}^n (X_i - \mu)^2] + \mathbb E[\sum_{i=1}^n 2(X_i - \mu)(\mu - \bar{X})] + \mathbb E[\sum_{i=1}^n (\mu - \bar{X})^2]\]
+The middle term is
+\begin{align*}
+	\mathbb E[\sum_{i=1}^n 2(X_i - \mu)(\mu - \bar{X})]&=2\mathbb E[\sum_{i=1}^n (X_i - \mu)(\mu - \bar{X})]\\
+	&=2\mathbb E[(n\bar{X}-n\mu)(\mu - \bar{X})]\\
+	&=-2n\mathbb E[(\mu-\bar{X})^2]
+\end{align*}
+For the third item
+\[\mathbb E[\sum_{i=1}^n (\mu - \bar{X})^2]=\mathbb E[n (\mu - \bar{X})^2]=n\mathbb E[(\mu-\bar{X})^2]\]
+So we have
+\[\mathbb E[\sum_{i=1}^n (X_i - \bar{X})^2]=\mathbb E[\sum_{i=1}^n (X_i - \mu)^2] - n\mathbb E[(\mu - \bar{X})^2]\]
+We know that $\mathbb E[\sum_{i=1}^n (X_i - \mu)^2] = n\sigma^2$
+$$\mathbb E[(\mu-\bar{X})^2]=\mathbb E[\mu^2-2\mu\bar{X}+\bar{X}^2]=\mathbb E[\bar{X}^2]-\mu^2$$
+And \begin{align*}
+	\text{Var}(X) &= \mathbb{E}\left[(X - \mathbb{E}[X])^2\right] \\
+	&= \mathbb{E}\left[X^2 - 2X\mathbb{E}[X] + \mathbb{E}[X]^2\right] \\
+	&= \mathbb{E}[X^2] - 2\mathbb{E}[X]\mathbb{E}[X] + \mathbb{E}[X]^2 \\
+	&= \mathbb{E}[X^2] - 2\mathbb{E}[X]^2 + \mathbb{E}[X]^2 \\
+	&= \mathbb{E}[X^2] - \mathbb{E}[X]^2
+\end{align*}
+So $$\mathbb E[\bar{X}^2]=\text{Var}[\bar{X}]+\mathbb E[\bar{X}]^2$$
+So \begin{align*}
+	\mathbb E[(\mu-\bar{X})^2]&=\mathbb E[\bar{X}^2]-\mu^2\\
+	&=\text{Var}[\bar{X}]\\
+	&=\text{Var}[\frac{1}{n}\sum_{i=1}^nX_i]\\
+	&=\frac{1}{n^2}\text{Var}[\sum_{i=1}^nX_i]\\
+	&=\frac{1}{n^2}\times n\times\text{Var}[X_i]\\
+	&=\frac{\sigma^2}{n}
+\end{align*}	
+So we have
+\[ \mathbb E[\sum_{i=1}^n (X_i - \bar{X})^2]=n\sigma^2 - n(\frac{\sigma^2}{n}) = n\sigma^2 - \sigma^2= (n-1)\sigma^2\]
+If we use $n$ in the denominator:
+\[\mathbb E[\frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2] = \frac{n-1}{n}\sigma^2\]
+This is biased because it's less than the true population variance $\sigma^2$.\medskip\\
+But if we use $(n-1)$ in the denominator:
+\[\mathbb E[\frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2] = \sigma^2\]
+This gives us an unbiased estimator of the population variance.
+\end{document}
