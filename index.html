@@ -594,6 +594,9 @@
             // Close mobile menu if open
             document.getElementById('nav-menu').classList.remove('active');
             
+            // Update URL hash
+            history.replaceState(null, '', '#' + sectionId);
+
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -604,8 +607,13 @@
             navMenu.classList.toggle('active');
         }
 
-        // Initialize page
+        // Initialize page - restore section from URL hash
         document.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            }
+
             // Add click handlers to nav links
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
