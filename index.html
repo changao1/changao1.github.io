@@ -415,9 +415,9 @@
                     <div>
                         <h1 style="font-family: 'Garamond', serif;">Chang Gao</h1>
                         <p class="subtitle">PhD Candidate in Economics</p>
-                        <p class="intro-text">
-                            I am a 4-year PhD Candidate at the Department of Economics, University of Oklahoma. 
-                            My research interest is on the intersection of real estate and macroeconomics, I had been trying to understand the housing boom (and now, the collapse) of China for a long time.
+                        <p class="intro-text" style="color: var(--black);">
+                            I am a 4-year PhD Candidate at the Department of Economics, University of Oklahoma.
+                            My research interest is on the intersection of housing market, macroeconomics and household wealth, I have been trying to understand the housing boom (and now, the collapse) of China for a long time.
                         </p>
                         
                         <div class="contact-info">
@@ -466,43 +466,45 @@
             <section id="research">
                 <h2>Research</h2>
                 <p class="section-subtitle">
-                    Recently I had been working on the relationship between local government debt (mainly LGFV debt) and housing cycles happened in China, both empirically and with DSGE models.
+                    I study the mechanisms of China's housing market boom and collapse, focusing on their relationship to local government infrastructure debt-financing and real estate developer expansion. I am also interested in how housing cycles affect household wealth and welfare.
                 </p>
                 
                 <div class="research-list">
                     <div class="research-item">
-                        <h3>70 China Cities Housing Index Data [<a href="https://github.com/changao1/70-China-cities-housing-index-data-by-national-bureau-of-statistics" target="_blank" style="text-decoration: underline;">Github Repo</a>]</h3>
-                        <p>
-                            Monthly housing price index data for 70 major Chinese cities, published by the National Bureau of Statistics of China. Collected, cleaned, and automatically updated.
+                        <h3>Work in Progress</h3>
+                        <p style="color: var(--black);">
+                            1. Understanding the Housing Boom and Collapse in China: Insights from the Typical Growing Story of a Small City [draft coming soon]<br>
+                            2. Housing Purchase Restrictions and Wealth Inequality: Evidence from Anticipatory Behavior under Policy Intervention [draft coming soon]
                         </p>
-                        <img src="assets/existing_home_price_index_cumulative.png" alt="Existing Home Price Index" style="width: 100%; margin-top: 0.5rem; border-radius: 8px;">
-                        <p style="text-align: center; margin-top: 0.5rem; color: var(--dark-gray); font-size: 14px;">Example of Housing Price Index</p>
                     </div>
                 </div>
 
                 <div class="research-list" style="margin-top: 2rem;">
                     <div class="research-item">
-                        <h3>Current Research</h3>
+                        <h3>Update monthly: 70 China Cities Housing Index Data [<a href="https://github.com/changao1/70-China-cities-housing-index-data-by-national-bureau-of-statistics" target="_blank" style="text-decoration: underline;">Github Repo</a>]</h3>
                         <p>
-                            I am currently working on research xxx.
+                            Monthly housing price index data for 70 major Chinese cities, published by the National Bureau of Statistics of China. Collected, cleaned, and automatically updated.
                         </p>
-                    </div>
-
-                    <div class="research-item">
-                        <h3>Research Interests</h3>
-                        <p>
-                            • 111<br>
-                            • 222<br>
-                            • 333<br>
-                            • 444
-                        </p>
-                    </div>
-
-                    <div class="research-item">
-                        <h3>Work in Progress</h3>
-                        <p>
-                            Planning to explore aaa.
-                        </p>
+                        <p id="housing-stats" style="margin-top: 0.75rem; color: var(--black);"></p>
+                        <script>
+                        (async function () {
+                            const el = document.getElementById('housing-stats');
+                            const url = 'https://raw.githubusercontent.com/changao1/70-China-cities-housing-index-data-by-national-bureau-of-statistics/main/stats.json?t=' + Date.now();
+                            try {
+                                const r = await fetch(url, { cache: 'no-store' });
+                                if (!r.ok) throw new Error('HTTP ' + r.status);
+                                const d = await r.json();
+                                const n = d.summary.new_home_price_index;
+                                const e = d.summary.existing_home_price_index;
+                                const abs = v => Math.abs(v).toFixed(2) + '%';
+                                el.innerHTML = `Based on data since early 2011, as of ${d.as_of}, compared to their peaks the 30 worst-hit cities have fallen on average <strong>${abs(n.top_n_avg_drop_pct)}</strong> in new-home prices and <strong>${abs(e.top_n_avg_drop_pct)}</strong> in existing-home prices; across all 70 major cities the average drops are <strong>${abs(n.all_avg_drop_pct)}</strong> and <strong>${abs(e.all_avg_drop_pct)}</strong>. The biggest drops are <strong>${n.biggest_drop.city}</strong> (${abs(n.biggest_drop.drop_pct)}, peaked ${n.biggest_drop.peak_date}) for new homes and <strong>${e.biggest_drop.city}</strong> (${abs(e.biggest_drop.drop_pct)}, peaked ${e.biggest_drop.peak_date}) for existing homes, while the smallest are <strong>${n.smallest_drop.city}</strong> (${abs(n.smallest_drop.drop_pct)}, peaked ${n.smallest_drop.peak_date}) and <strong>${e.smallest_drop.city}</strong> (${abs(e.smallest_drop.drop_pct)}, peaked ${e.smallest_drop.peak_date}) respectively.`;
+                            } catch (err) {
+                                el.remove();
+                            }
+                        })();
+                        </script>
+                        <img src="assets/existing_home_price_index_cumulative.png" alt="Existing Home Price Index" style="width: 100%; margin-top: 0.5rem; border-radius: 8px;">
+                        <p style="text-align: center; margin-top: 0.5rem; color: var(--dark-gray); font-size: 14px;">Example of Housing Price Index</p>
                     </div>
                 </div>
             </section>
@@ -553,7 +555,7 @@
             <!-- CV Section -->
             <section id="resume">
                 <div class="cv-container">
-            <a href="https://changao1.github.io/assets/resume_chang_gao.pdf" style="color: #666666; text-decoration: underline; text-decoration-thickness: 1px;">
+            <a href="https://changao1.github.io/assets/resume_chang_gao.pdf" style="color: var(--black); text-decoration: underline; text-decoration-thickness: 1px;">
                 <h2>Click here for Resumé</h2>
             </a>
                 </div>
